@@ -17,7 +17,7 @@
 #ifndef HLMD_LIB
 #define HLMD_LIB
 
-#define HLMD_LIB_VERSION 1.0.0  /* The current version of the HLMD library. */
+#define HLMD_LIB_VERSION 1.0.1  /* The current version of the HLMD library. */
 #define HLMD_EVAL_MIN_LEVEL 0   /* The minimum cycle level of the auxiliary loop macro. */
 #define HLMD_EVAL_MAX_LEVEL 5   /* The minimum cycle level of the auxiliary loop macro. */
 #define HLMD_EVAL_MAX_DEPTH 243 /* The maximum cycle level of the auxiliary loop macro. */
@@ -46,7 +46,7 @@
 #define HLMD_NOT(x) HLMD_CHECK(HLMD_PRIMITIVE_CAT(__HLMD_NOT_, x)) /* Logical NOT, returns 1 if x is `0, false, NULL, nullptr`, otherwise 0. */
 #define __HLMD_NOT_0 HLMD_PROBE()
 #define __HLMD_NOT_false HLMD_PROBE()
-#define __HLMD_NOT_NULL HLMD_PROBE()
+#define __HLMD_NOT___null HLMD_PROBE()
 #define __HLMD_NOT_nullptr HLMD_PROBE()
 
 #define HLMD_BOOL(x) HLMD_NOT(HLMD_CHECK(HLMD_CAT(__HLMD_NOT_, x)))                          /* Convert x to 1 (true) or 0 (false) for macro logic. */
@@ -60,11 +60,13 @@
 #define HLMD_IS_EMPTY(...) HLMD_CHECK(HLMD_CAT(HLMD_PRIMITIVE_CAT(__HLMD_IS_EMPTY_, __VA_ARGS__), 0)) /* Check if the parameter pack is empty. */
 #define __HLMD_IS_EMPTY_0 HLMD_PROBE()
 
-#if __cplusplus < 202002L
-#define __VA_OPT__(...) HLMD_IF_ELSE(HLMD_IS_EMPTY(...))(, __VA_ARGS__)
+#if __cplusplus < 202002L || !defined(__cplusplus)
+#define __HLMD__VA_OPT__(...) HLMD_IF_ELSE(HLMD_IS_EMPTY(...))(, __VA_ARGS__)
+#else
+#define __HLMD__VA_OPT__(...) __VA_OPT__(__VA_ARGS__)
 #endif
 
-#define HLMD_IS_PAREN(x, ...) HLMD_CHECK(__VA_OPT__(, 0, ) __HLMD_IS_PAREN_PROBE x)                           /* Check if the argument is parenthesized. */
+#define HLMD_IS_PAREN(x, ...) HLMD_CHECK(__HLMD__VA_OPT__(, 0, ) __HLMD_IS_PAREN_PROBE x)                           /* Check if the argument is parenthesized. */
 #define HLMD_REMOVE_PAREN(...) HLMD_IF_ELSE(HLMD_IS_PAREN(__VA_ARGS__))(HLMD_EXPAND __VA_ARGS__)(__VA_ARGS__) /* Remove parentheses from the argument if present. */
 #define __HLMD_IS_PAREN_PROBE(...) HLMD_PROBE()
 
@@ -91,5 +93,7 @@
 
 #define HLMD_DEF2STR(macro_define) #macro_define          /* Convert macro definition to string literal. */
 #define HLMD_NUM2STR(num_define) HLMD_DEF2STR(num_define) /* Convert number macro to string literal. */
+
+#define HLMD_C_NULL(null) HLMD_EXPAND(HLMD_DEFER(HLMD_EMPTY_ARG) HLMD_REMOVE_PAREN null) /* Redirect NULL ((void*)0) in C to 0. */
 
 #endif
