@@ -67,11 +67,11 @@
 
 /* Simulate the '__VA_OPT__' behavior: expand to 'empty_tuple' if the parameter package is empty, or 'data_tuple' otherwise (remove parentheses). */
 #define HLMD__VA_OPT__(datat_tuple, empty_tuple, ...) \
-    HLMD_REMOVE_PAREN_BACK(HLMD_IF_ELSE(HLMD_IS_EMPTY(__VA_ARGS__))(empty_tuple)(data_tuple))
+    HLMD_REMOVE_PAREN(HLMD_IF_ELSE(HLMD_IS_EMPTY(__VA_ARGS__))(empty_tuple)(data_tuple))
 
 /* Apply macro to each argument in the parameter pack. */
 #define HLMD_FOR_EACH(macro, macro_args, ...)                                                    \
-    HLMD_CAT(__HLMD_FOR_EACH_,HLMD_IS_EMPTY(HLMD_REMOVE_PAREN_BACK(HLMD_GET_FIST_ARGS(__VA_ARGS__)))) \
+    HLMD_CAT(__HLMD_FOR_EACH_,HLMD_IS_EMPTY(HLMD_REMOVE_PAREN(HLMD_GET_FIST_ARGS(__VA_ARGS__)))) \
     (macro, macro_args, __VA_ARGS__)
 #define __HLMD_FOR_EACH_0(macro, macro_args, ...) \
     __HLMD_FOR_EACH_1(macro, macro_args)          \

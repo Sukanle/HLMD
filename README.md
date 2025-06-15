@@ -42,7 +42,7 @@ Below is a query table for macro definitions:<br>
 |`HLMD_IS_PAREN`|`x, ...`|Check if the argument is parenthesized.|
 |`HLMD_REMOVE_PAREN`|`...`|Remove parentheses from the argument if present.|
 |`HLMD_REMOVE_PAREN_ARGS`|`...`|Remove parentheses and parameters, if any.|
-|`HLMD__VA_OPT__`|`data_tuple, empty_tuple, ...`|Simulate the '__VA_OPT__' behavior: expand to 'empty_tuple' if the parameter package is empty, or 'data_tuple' otherwise (remove parentheses).|
+|`HLMD__VA_OPT__`|`data_tuple, empty_tuple, ...`|Simulate the `__VA_OPT__` behavior: expand to 'empty_tuple' if the parameter package is empty, or 'data_tuple' otherwise (remove parentheses).|
 |`HLMD_FOR_EACH`|`macro, macro_args, ...`|Apply `macro` to each argument in the parameter pack.|
 |`HLMD_EVAL_MANUAL`|`level, ...`|Manually specify the number of recursive macro expansion rounds.|
 |`HLMD_EVAL_AUTO`|`...`|Automatically expand macros up to the maximum level.|
