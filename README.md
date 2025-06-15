@@ -1,14 +1,13 @@
 ![Liecense](https://img.shields.io/badge/Liencese-Apache_2.0-blue)     ![Language](https://img.shields.io/badge/Language-C/C++-red)
 
 # HLMD: High-Level Macro Definitions
-* This is a **`Head-Only`** libruary. All you need to do is add `HLMD.h` to the header directory of your build system
+* This is a **`Head-Only`** library. All you need to do is add `HLMD.h` to the header directory of your build system
 
 ## Depend
 > [!NOTE]
 > **HLMD** minimum support is for compilers that support `std=c99` or `std=c++11`.<br>
-> It's beat to use a compiler that supports `__VA_OPT__`.
 ## Fast to Start
-To use this libruary, you can refer to the following documents:
+To use this library, you can refer to the following documents:
 ```cpp
 // you project file
 ...
@@ -42,6 +41,8 @@ Below is a query table for macro definitions:<br>
 |`HLMD_IS_EMPTY`|`...`|Check if the parameter pack is empty.|
 |`HLMD_IS_PAREN`|`x, ...`|Check if the argument is parenthesized.|
 |`HLMD_REMOVE_PAREN`|`...`|Remove parentheses from the argument if present.|
+|`HLMD_REMOVE_PAREN_ARGS`|`...`|Remove parentheses and parameters, if any.|
+|`HLMD__VA_OPT__`|`data_tuple, empty_tuple, ...`|Simulate the '__VA_OPT__' behavior: expand to 'empty_tuple' if the parameter package is empty, or 'data_tuple' otherwise (remove parentheses).|
 |`HLMD_FOR_EACH`|`macro, macro_args, ...`|Apply `macro` to each argument in the parameter pack.|
 |`HLMD_EVAL_MANUAL`|`level, ...`|Manually specify the number of recursive macro expansion rounds.|
 |`HLMD_EVAL_AUTO`|`...`|Automatically expand macros up to the maximum level.|

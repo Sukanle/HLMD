@@ -6,7 +6,6 @@
 ## 依赖
 > [!NOTE]
 > **HLMD** 最低支持 `std=c99` 或 `std=c++11` 的编译器。<br>
-> 最好使用支持 `__VA_OPT__` 的编译器。
 
 ## 快速开始
 要使用本库，你可以参考如下示例：
@@ -45,6 +44,9 @@
 |`HLMD_IS_EMPTY`|`...`|检测参数包是否为空。|
 |`HLMD_IS_PAREN`|`x, ...`|检测参数是否带括号。|
 |`HLMD_REMOVE_PAREN`|`...`|去除参数的括号（如有）。|
+|`HLMD_REMOVE_PAREN_ARGS`|`...`|去除括号和参数（如有）。|
+|`HLMD__VA_OPT__`|`data_tuple, empty_tuple, ...`|模拟 `__VA_OPT__` 行为：如果参数包为空则展开为 `empty_tuple`，否则展开为 `data_tuple`（去除括号）。|
+|`HLMD__VA_OPT__`|`...`|去除括号和参数（如有）。|
 |`HLMD_FOR_EACH`|`macro, macro_args, ...`|对参数包中的每个参数应用 `macro`。|
 |`HLMD_MANUAL_EVAL`|`level, ...`|手动指定递归宏展开的轮数。|
 |`HLMD_AUTO_EVAL`|`...`|自动递归展开宏到最大层数。|
