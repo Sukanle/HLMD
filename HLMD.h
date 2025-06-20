@@ -93,8 +93,13 @@
 #define HLMD_DEF2STR(macro_define) #macro_define          /* Convert macro definition to string literal. */
 #define HLMD_NUM2STR(num_define) HLMD_DEF2STR(num_define) /* Convert number macro to string literal. */
 
+#ifndef __cplusplus
 #define HLMD_C_NULL(null) HLMD_REMOVE_PAREN_ARGS null /* Redirect NULL ((void*)0) in C to 0. */
+#else
+#define HLMD_C_NULL(null) null
+#endif
 
-#define HLMD_LIST_PUSH_BACK(args,...) HLMD_EXPAND x HLMD__VA_OPT__((,), (), __VA_ARGS__)
+
+#define HLMD_LIST_PUSH_BACK(args,...) HLMD_EXPAND arg HLMD__VA_OPT__((,), (), __VA_ARGS__)
 
 #endif
