@@ -26,12 +26,12 @@
 #define HLMD_PRIMITIVE_CAT(head, tail, ...) head##tail              /* Generate a new token by directly concatenating the head and tail without unfolding. */
 #define HLMD_CAT(head, tail)  HLMD_PRIMITIVE_CAT(head, tail)        /* After unfolding, splice the head and tail to generate a new token. */
 
-#define HLMD_GET_FIST_ARGS(first, ...) first            /* Get the first one in the parameter package. */
+#define HLMD_GET_FIRST_ARGS(first, ...) first            /* Get the first one in the parameter package. */
 #define HLMD_GET_SECOND_ARGS(first, second, ...) second /* Get the second argument. */
 #define HLMD_GET_OTHER_ARGS(first, ...) __VA_ARGS__     /* Get the parameter package outside of the first one. */
 
 #define __HLMD_IIF(condition) HLMD_PRIMITIVE_CAT(__HLMD_IIF_, condition)
-#define __HLMD_IIF_1(t, ...) HLMD_GET_FIST_ARGS(t, ...)
+#define __HLMD_IIF_1(t, ...) HLMD_GET_FIRST_ARGS(t, ...)
 #define __HLMD_IIF_0(t, ...) HLMD_GET_OTHER_ARGS(t, ...)
 
 #define HLMD_EMPTY()        /* An empty macro that is often used as a placeholder for delayed expansion. */
