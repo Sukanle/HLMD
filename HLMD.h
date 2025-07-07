@@ -32,7 +32,7 @@
 
 #define __HLMD_IIF(condition) HLMD_PRIMITIVE_CAT(__HLMD_IIF_, condition)
 #define __HLMD_IIF_1(t, ...) HLMD_GET_FIST_ARGS(t, ...)
-#define __HLMD_IIF_0(t, ...) HLMD_GET_FIST_ARGS(t, ...)
+#define __HLMD_IIF_0(t, ...) HLMD_GET_OTHER_ARGS(t, ...)
 
 #define HLMD_EMPTY()        /* An empty macro that is often used as a placeholder for delayed expansion. */
 #define HLMD_EMPTY_ARG(...) /* An empty macro that discards all arguments. */
@@ -66,7 +66,7 @@
 #define __HLMD_IS_PAREN_PROBE(...) HLMD_PROBE()
 
 /* Simulate the '__VA_OPT__' behavior: expand to 'empty_tuple' if the parameter package is empty, or 'data_tuple' otherwise (remove parentheses). */
-#define HLMD__VA_OPT__(datat_tuple, empty_tuple, ...) \
+#define HLMD__VA_OPT__(data_tuple, empty_tuple, ...) \
     HLMD_REMOVE_PAREN(HLMD_IF_ELSE(HLMD_IS_EMPTY(__VA_ARGS__))(empty_tuple)(data_tuple))
 
 /* Apply macro to each argument in the parameter pack. */
@@ -100,6 +100,6 @@
 #endif
 
 
-#define HLMD_LIST_PUSH_BACK(args,...) HLMD_EXPAND arg HLMD__VA_OPT__((,), (), __VA_ARGS__)
+#define HLMD_LIST_PUSH_BACK(args,...) HLMD_EXPAND args HLMD__VA_OPT__((,), (), __VA_ARGS__) __VA_ARGS__
 
 #endif
