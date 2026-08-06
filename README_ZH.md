@@ -22,15 +22,15 @@
 
 |宏|参数/值|说明|
 |-|-|-|
-|`HLMD_EVAL_MIN_LEVEL`|`1.0.0` |当前 *`HLMD`* 库的**版本号**。|
+|`HLMD_LIB_VERSION`|`1.0.1` |当前 *`HLMD`* 库的**版本号**。|
 |`HLMD_EVAL_MIN_LEVEL`|`0` |辅助循环宏的**最小循环层数**。|
 |`HLMD_EVAL_MAX_LEVEL`|`5` |辅助循环宏的**最大循环层数**。|
 |`HLMD_EVAL_MAX_DEPTH`|`243` |二级循环宏的**最大循环深度**。|
 |`HLMD_EVAL_LEVEL_DEPTH`|`3` |二级循环宏**每层的深度**。|
 |`HLMD_PRIMITIVE_CAT`|`head, tail, ...`|直接拼接 head 和 tail，**不展开**参数。|
-|`HLMD_CAT`|`x, y`|**展开后**拼接 x 和 y，生成新标记。|
-|`HLMD_GET_FIST_ARGS`|`first, ...`|获取参数包中的**第一个**参数。|
-|`HLMD_GET_SEC_ARGS`|`first, second, ...`|获取参数包中的**第二个**参数。|
+|`HLMD_CAT`|`head, tail`|**展开后**拼接 head 和 tail，生成新标记。|
+|`HLMD_GET_FIRST_ARGS`|`first, ...`|获取参数包中的**第一个**参数。|
+|`HLMD_GET_SECOND_ARGS`|`first, second, ...`|获取参数包中的**第二个**参数。|
 |`HLMD_GET_OTHER_ARGS`|`first, ...`|获取参数包中**除第一个外**的所有参数。|
 |`HLMD_EMPTY`|`\`|空宏，常用作**延迟展开**的占位符。|
 |`HLMD_EMPTY_ARG`|`...`|空宏，**丢弃所有参数**。|
@@ -46,13 +46,13 @@
 |`HLMD_REMOVE_PAREN`|`...`|去除参数的括号（如有）。|
 |`HLMD_REMOVE_PAREN_ARGS`|`...`|去除括号和参数（如有）。|
 |`HLMD__VA_OPT__`|`data_tuple, empty_tuple, ...`|模拟 `__VA_OPT__` 行为：如果参数包为空则展开为 `empty_tuple`，否则展开为 `data_tuple`（去除括号）。|
-|`HLMD__VA_OPT__`|`...`|去除括号和参数（如有）。|
 |`HLMD_FOR_EACH`|`macro, macro_args, ...`|对参数包中的每个参数应用 `macro`。|
-|`HLMD_MANUAL_EVAL`|`level, ...`|手动指定递归宏展开的轮数。|
-|`HLMD_AUTO_EVAL`|`...`|自动递归展开宏到最大层数。|
+|`HLMD_EVAL_MANUAL`|`level, ...`|手动指定递归宏展开的轮数。|
+|`HLMD_EVAL_AUTO`|`...`|自动递归展开宏到最大层数。|
 |`HLMD_DEF2STR`|`macro_define`|将宏定义转换为字符串字面量。|
 |`HLMD_NUM2STR`|`num_define`|将数字宏转换为字符串字面量。|
 |`HLMD_C_NULL`|`null`|将C语言中的`NULL ((void*)0)`重定向为`0`.|
+|`HLMD_LIST_PUSH_BACK`|`args, ...`|将一个或多个参数追加到参数列表末尾。|
 
 > [!IMPORTANT]
-> 在C语言中，如果尝试将 `NULL` 作为宏参数传递，请使用 `HLMD_C_NULL()` 包装器传递，因为 `ISO C` 要求 `NULL` 为 `((void*)0)`，这将导致连接失败，从而导致 `HLMD` 的宏定义失败。
+> 在C语言中，如果尝试将 `NULL` 作为宏参数传递，请使用 `HLMD_C_NULL()` 包装器传递，因为 `ISO C` 要求 `NULL` 为 `((void*)0)`，这将导致链接失败，从而导致 `HLMD` 的宏定义失败。

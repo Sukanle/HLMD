@@ -19,14 +19,14 @@ Most of the features in this repository have `HLMD__` + `feature name`.For exmap
 Below is a query table for macro definitions:<br>
 |Macro|Params/Value|description|
 |-|-|-|
-|`HLMD_EVAL_MIN_LEVEL`|`1.0.0` |The current **version** of the *`HLMD`* liburay.|
+|`HLMD_LIB_VERSION`|`1.0.1` |The current **version** of the *`HLMD`* library.|
 |`HLMD_EVAL_MIN_LEVEL`|`0` |The **minimum** cycle **level** of the auxiliary loop macro.|
 |`HLMD_EVAL_MAX_LEVEL`|`5` |The **maximum** cycle **level** of the auxiliary loop macro.|
 |`HLMD_EVAL_MAX_DEPTH`|`243` |The **maximum** loop **depth** of the secondary loop macro.|
 |`HLMD_EVAL_LEVEL_DEPTH`|`3` |The **depth** of **each level** of the **secondary** loop macro.|
 |`HLMD_PRIMITIVE_CAT`|`head, tail, ...`|Generate a new token by directly concatenating the head and tail **without unfolding**.|
 |`HLMD_CAT`|`x, y`|**After unfolding**, splice the head and tail to generate a new token.|
-|`HLMD_GET_FIST_ARGS`|`first, ...`|Get the **first** one in the parameter package.|
+|`HLMD_GET_FIRST_ARGS`|`first, ...`|Get the **first** one in the parameter package.|
 |`HLMD_GET_SECOND_ARGS`|`first, second, ...`|Get the **second** argument.|
 |`HLMD_GET_OTHER_ARGS`|`first, ...`|Get the parameter package **outside of** the first one.|
 |`HLMD_EMPTY`|`\`|An empty macro that is often used as a **placeholder** for **delayed expansion**.|
@@ -49,6 +49,7 @@ Below is a query table for macro definitions:<br>
 |`HLMD_DEF2STR`|`macro_define`|Convert macro definition to string literal.|
 |`HLMD_NUM2STR`|`num_define`|Convert number macro to string literal.|
 |`HLMD_C_NULL`|`null`|Redirect `NULL ((void*)0)` in C to `0`.|
+|`HLMD_LIST_PUSH_BACK`|`args, ...`|Push one or more arguments to the back of the argument list.|
 
 > [!IMPORTANT]
 > In C, if you try to pass `NULL` as a macro parameter, use the `HLMD_C_NULL()` wrapper pass, because `ISO C` requires `NULL` to be `((void*)0)`, which will result in the failure to concatenate and thus the macro definition of `HLMD`.
