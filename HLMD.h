@@ -88,7 +88,7 @@
 
 /* Apply macro to each argument in the parameter pack. */
 #define HLMD_FOR_EACH(macro, macro_args, ...)                                                     \
-    HLMD_CAT(__HLMD_FOR_EACH_, HLMD_IS_EMPTY(HLMD_REMOVE_PAREN(HLMD_GET_FIST_ARGS(__VA_ARGS__)))) \
+    HLMD_CAT(__HLMD_FOR_EACH_, HLMD_IS_EMPTY(HLMD_REMOVE_PAREN(HLMD_GET_FRIST_ARGS(__VA_ARGS__)))) \
     (macro, macro_args, __VA_ARGS__)
 #define __HLMD_FOR_EACH_0(macro, macro_args, ...) \
     __HLMD_FOR_EACH_1(macro, macro_args)          \
